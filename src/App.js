@@ -1,28 +1,15 @@
-import React, { useEffect, useState } from 'react'
+// import { Background } from "./Components/main.styles"
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavigationBar from './Components/NavigationBar'
 
-function App() {
-  const [users, setUsers] = useState()
-  console.log('app rendered');
-
-  useEffect(() => {
-    fetch('/api').then(response => response.json().then(
-      data => {
-        console.log(data);
-        setUsers(data.users)
-      }
-    ))
-  },[])
+const App = () => {
+ 
 
 
   return (
     <div>
-      Dashboard
-      <div>
-        <p>
-          {!users ? ("Empty"): (users)}
-        </p>
-      </div>
+      <NavigationBar/>
     </div>
   )
 }
