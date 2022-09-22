@@ -5,8 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('../../public/background.png');
+  background-color: rgb(25, 35, 19);
   background-position: bottom;
+  color: white;
   
 
 }

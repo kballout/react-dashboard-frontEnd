@@ -1,16 +1,16 @@
-// import { Background } from "./Components/main.styles"
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavigationBar from './Components/NavigationBar'
+import {Routes, Route} from 'react-router-dom';
+import Error from './pages/Error';
+import Features from './pages/guest/Features';
+import Home from './pages/guest/Home';
 
 const App = () => {
- 
-
-
   return (
-    <div>
-      <NavigationBar/>
-    </div>
+    <Routes>
+      <Route exact path='/' element={<Home/>}> </Route>
+      <Route path='/features' element={<Features/>}> </Route>
+      <Route path='*' element={<Error/>}></Route>
+    </Routes>
   )
 }
 

@@ -1,0 +1,26 @@
+.firstSection{
+    display: flex;
+    // margin-top: 2px;
+    align-items: center;
+    .image{
+        background-image: url('../../public/transparent.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 900px;
+        height: 900px;
+        background-position: top;
+        margin-right: -450px;
+    }
+    .firstText{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 30px;
+        margin-right: 400px;
+        .text{
+            width: 50%;
+            font-size: larger;
+            
+        }
+    }
+}
