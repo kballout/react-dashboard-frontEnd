@@ -52,4 +52,9 @@
 .sublinks {
   display: contents;
   color: white;
+}
+
+.dropDown {
+  color: black !important;
+  font-size: larger;
 }/*# sourceMappingURL=componentStyles.css.map */
