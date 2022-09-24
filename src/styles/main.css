@@ -1,9 +1,11 @@
 .firstSection {
+  font-family: "livingstone";
   display: flex;
+  margin-top: -40px;
   align-items: center;
 }
 .firstSection .image {
-  background-image: url("../../public/transparent.png");
+  background-image: url("../assets/images/transparent.png");
   background-repeat: no-repeat;
   background-size: cover;
   width: 900px;
@@ -15,8 +17,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 30px;
-  margin-right: 400px;
+  gap: 10px;
+  margin-right: 200px;
+}
+.firstSection .firstText .sword {
+  color: white;
+  margin-bottom: 3%;
 }
 .firstSection .firstText .text {
   width: 50%;

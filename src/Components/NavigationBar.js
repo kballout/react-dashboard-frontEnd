@@ -8,14 +8,14 @@ const NavigationBar = () => {
             <nav className='navStyle'>
                     <a className='link' href='/'>
                         <div className='image'></div>
-                        <h3>GuildMaster</h3>
+                        <h2>GuildMaster</h2>
                     </a>
                     <div className='subNav'>
                         <a className='sublinks' href='/features'>
-                            <h5>Features</h5>
+                            <h3>Features</h3>
                         </a>
                         <a className='sublinks' href='/tutorial'>
-                            <h5>Tutorial</h5>
+                            <h3>Tutorial</h3>
                         </a>
                         <a className='sublinks' href='/'>
                             <Button variant="light" size='lg'>Login<BiLogIn/></Button>

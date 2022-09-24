@@ -1,6 +1,7 @@
 .navStyle {
     /* margin-top: 50px; */
     /* height: 80px; */
+    font-family: 'livingstone';
     border-bottom: solid black 2px;
     background-color: rgb(8, 61, 19);
     display: flex;
@@ -19,7 +20,7 @@
 .image{
     height: 110px;
     width: 110px;
-    background-image: url('../../../public/transparent.png');
+    background-image: url('../../assets/images/transparent.png');
     background-size: cover;
     background-repeat: no-repeat;
     margin-right: -10px;

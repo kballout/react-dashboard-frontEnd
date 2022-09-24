@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  font-family: 'livingstone';
+  src: local('livingstone'), url('../assets/fonts/Livingst.ttf') format('truetype');
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
