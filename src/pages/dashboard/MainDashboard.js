@@ -1,14 +1,14 @@
 import React from 'react'
 import NavigationBar from '../../Components/NavigationBar'
+import SideBar from '../../Components/SideBar'
 
 function MainDashboard() {
   return (
     <div>
         <NavigationBar/>
+        <SideBar/>
         <section>
-            <h2>
-                Main Dashboard
-            </h2>
+        
         </section>
     </div>
   )

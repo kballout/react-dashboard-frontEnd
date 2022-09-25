@@ -1,0 +1,50 @@
+.mainBar{
+    display: flex;
+    width: 300px;
+    height: 100vh;
+}
+.barExtention{
+    height: 100vh;
+    width: 300px;
+    border-right: 1px solid white;    
+}
+.sideBar{
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid white;
+    float: left;
+    padding: 10px;
+    align-items: center;
+    .line{
+        background-color: white;
+        width: 52px;
+        height: 3px;
+    }
+}
+
+.bars{
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.icon{
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+}
+
+.list{
+    margin: 0;
+    padding: 0;
+    li{
+        list-style: none;
+    }
+}
+
+.guild{
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    margin: 8px;
+    cursor: pointer;
+}
