@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import {FaBars} from 'react-icons/fa'
+import {FaBars, FaPlusCircle} from 'react-icons/fa'
 import { useSelector } from "react-redux";
-import {CSSTransition} from 'react-transition-group';
 import './styles/componentStyles.css'
 
 
@@ -12,8 +11,10 @@ function SideBar() {
     return (
         <div className="mainBar">
            <nav className="sideBar">
-                    <FaBars className="bars" size={32} onClick={() => setShow(!show)}/>
-                    <img src={authUser.avatar} alt='ProfilePic' className="icon"></img>
+                    <div style={{display: "flex", alignItems: 'center', gap: 5}}>
+                        <img src={authUser.avatar} alt='ProfilePic' className="icon"></img>
+                        <FaBars className="clickable" size={32} onClick={() => setShow(!show)}/>
+                    </div>
                 <hr className="line"></hr>
                 <ul className="list">
                     {guilds.map((guild) =>
@@ -22,22 +23,16 @@ function SideBar() {
                         </li>
                     )}
                 </ul>
+                <hr className="line"></hr>
+                <FaPlusCircle className="clickable" size={32}/>        
            </nav>
-           {show ? (
-            <CSSTransition
-                in={show}
-                unmountOnExit
-                timeout={300}
-                onEnter={() => setShow(true)}
-                 onExited={() => setShow(false)}
-            >
-                <div className="barExtention">
+            <div className="barExtention" style={{width: show ? 300 : 0}}>
+                {show ? (
                         <h2>
                             Settings
                         </h2>
-                </div>
-            </CSSTransition>
-           ): <></>}
+                ): <></>}
+            </div>
         </div>
     )
 }

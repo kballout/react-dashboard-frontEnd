@@ -18,7 +18,7 @@ const NavigationBar = () => {
             <nav className='navStyle'>
                     <a className='link' href='/'>
                         <div className='image'></div>
-                        <h2>GuildMaster</h2>
+                        <h2 style={{marginTop: 20}}>GuildMaster</h2>
                     </a>
                     <div className='subNav'>
                         <a className='sublinks' href='/features'>
