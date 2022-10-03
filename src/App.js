@@ -9,6 +9,7 @@ import Error from './pages/Error';
 import Features from './pages/guest/Features';
 import Home from './pages/guest/Home';
 import { changeUserStatus } from './redux/authReducer';
+import RedirectLogin from './pages/guest/RedirectLogin';
 
 export default function App() {
   return (
@@ -25,9 +26,9 @@ export const RootNavigation = () => {
   
   //check logged in status
   const checkStatus = async() => {
-    const {authUser, guilds, accessToken, refreshToken} = await checkCredentials()
+    const {authUser, guilds} = await checkCredentials()
     if(authUser){
-      dispatch(changeUserStatus({authUser, guilds, accessToken, refreshToken}))
+      dispatch(changeUserStatus({authUser, guilds}))
     }
     setLoading(false)
   }
@@ -57,6 +58,7 @@ export const GuestNavigation = () => {
   return(
     <Routes>
       <Route exact path='/' element={<Home/>}> </Route>
+      <Route exact path='/:authcode' element={<RedirectLogin/>}> </Route>
       <Route path='/features' element={<Features/>}> </Route>
       <Route path='*' element={<Error/>}></Route>
     </Routes>

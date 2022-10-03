@@ -1,8 +1,19 @@
-//check cookies for a saved login and confirm with the server through the api
+import Cookies from "js-cookie"
+import axiosInstance from "./ApiCalls"
 
 export const checkCredentials = async () => {
-    let authUser, guilds, accessToken, refreshToken
-    // return {authUser, guilds, accessToken, refreshToken}
+    let authUser, guilds
+    //check cookie for code
+    let code = Cookies.get('code')
+    if(code){
+        const res = await axiosInstance.post(`/auth/code`, {data: JSON.stringify(code)})
+        if(res.data.msg === true){
+            console.log('checking credentials');
+            authUser = res.data.data.authUser
+            guilds = res.data.data.guilds
+        }
+    }
+    return {authUser, guilds}
     //TESTING
     authUser = {
         name: 'Kassim',
@@ -43,7 +54,5 @@ export const checkCredentials = async () => {
         },
         
     ]
-    accessToken = 'JNDSJKND13212nkj12n31k2n3123j1kjn2jken1jk2enjnkjnkj2n3j4njk23nkj4n23jkn4'
-    refreshToken = 'jk32nejknj23nrjkn23jknj3nrj5njk5jk5jk6n6j6666n6k6njknjkn323njnion2io3ni'
-    return {authUser, guilds, accessToken, refreshToken}
+    return {authUser, guilds}
 }
