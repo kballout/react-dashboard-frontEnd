@@ -11,14 +11,14 @@ function SideBar() {
         <div className="mainBar">
            <nav className="sideBar">
                     <div style={{display: "flex", alignItems: 'center', gap: 5}}>
-                        <img src={authUser.avatarUrl} alt='ProfilePic' className="icon"></img>
+                        <img src={`https://cdn.discordapp.com/avatars/${authUser.id}/${authUser.avatar}.png`} alt='ProfilePic' className="icon"></img>
                         <FaBars className="clickable" size={32} onClick={() => setShow(!show)}/>
                     </div>
                 <hr className="line"></hr>
                 <ul className="list">
                     {guilds.map((guild) =>
                         <li key={guild.id}>
-                            <img className="guild" src={guild.iconURL} alt='guildIcon'></img>
+                            <img className="guild" src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`} alt={guild.name}></img>
                         </li>
                     )}
                 </ul>

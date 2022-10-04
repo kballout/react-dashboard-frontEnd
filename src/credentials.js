@@ -6,12 +6,13 @@ export const checkCredentials = async () => {
     //check cookie for code
     let code = Cookies.get('code')
     if(code){
-        const res = await axiosInstance.post(`/auth/code`, {data: JSON.stringify(code)})
-        if(res.data.msg === true){
-            console.log('checking credentials');
-            authUser = res.data.data.authUser
-            guilds = res.data.data.guilds
-        }
+        await axiosInstance.post(`/auth/code`, {data: JSON.stringify(code)}).then((res) => {
+            if(res.data.msg === 'success'){
+                console.log('credentials found');
+                authUser = res.data.data.authUser
+                guilds = res.data.data.guilds
+            }
+        }).catch((err) => {console.log(err);})
     }
     return {authUser, guilds}
     //TESTING

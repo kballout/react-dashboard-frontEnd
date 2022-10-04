@@ -1,24 +1,37 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
-import { login } from '../../redux/authReducer'
+import { attemptLogin, login } from '../../redux/authReducer'
 import {useNavigate} from 'react-router-dom'
 
 function RedirectLogin() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {loggedIn} = useSelector((state) => state.auth)
+    const {loginMessage} = useSelector((state) => state.auth)
 
     useEffect(() => {
-        dispatch(login())
-    },[])
+      console.log('checking login status');
+      if(loginMessage === 'login success'){
+        console.log('logged in successfully');
+        navigate('/')
+      } else if(loginMessage === 'login failed'){
+        console.log('login failed');
+        navigate('/asdasf')
+      } else if(loginMessage === 'pending login'){
+        console.log('pending login');
+      } 
+    //   else if(loginMessage === 'logout success'){
+    //     console.log('logout attempt redirect');
+    //     if(window.location.href === 'http://localhost:3000/' || window.location.href === 'http://localhost:3000'){
+    //         window.location.reload()
+    //     }
+    //     navigate('/', {replace: true})
+    // }
+    },[loginMessage, navigate])
 
     useEffect(() => {
-      if(loggedIn === true){
-        return (
-          navigate('/dashboard')
-        )
-      }
-    },[loggedIn, navigate])
+      dispatch(attemptLogin())
+      dispatch(login())
+  },[])
 
   return (
     <div>
