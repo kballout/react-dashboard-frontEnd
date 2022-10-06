@@ -63,14 +63,69 @@
 .mainBar {
   display: flex;
   height: 100vh;
+  float: left;
 }
 
 .barExtention {
   background-color: rgba(0, 128, 0, 0.5);
   height: 100vh;
   width: 0;
-  border-right: 1px solid black;
+  border-right: 2px solid black;
   transition: width 300ms ease;
+}
+.barExtention .innerSidebar {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+.barExtention h2 {
+  text-decoration: underline;
+  text-align: center;
+}
+.barExtention p {
+  font-style: italic;
+}
+.barExtention img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+.barExtention h5 {
+  margin-top: 10px;
+}
+.barExtention nav {
+  background-color: rgb(9, 46, 22);
+  border-radius: 10px;
+  padding: 10px;
+  width: 250px;
+  margin-top: 30px;
+}
+.barExtention nav h5 {
+  margin-left: 1px;
+}
+.barExtention .setting {
+  display: block;
+  text-align: start;
+  align-content: center;
+  border-radius: 10px;
+  height: 40px;
+  cursor: pointer;
+}
+.barExtention .setting :hover {
+  background-color: green;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+.barExtention .links {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin: 5px;
+  text-decoration: none;
+  color: white;
 }
 
 .sideBar {

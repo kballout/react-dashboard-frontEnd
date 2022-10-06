@@ -27,4 +27,10 @@
 .firstSection .firstText .text {
   width: 50%;
   font-size: larger;
+}
+
+section {
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }/*# sourceMappingURL=main.css.map */

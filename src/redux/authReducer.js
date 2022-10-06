@@ -8,6 +8,7 @@ const initialState = {
     loginMessage: null,
     authUser: null,
     guilds: [],
+    selectedGuild: null
 }
 
 export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
@@ -17,7 +18,6 @@ export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
     let message
     try {
         const res = await axiosInstance.post(`/auth/code`, {data: JSON.stringify(code)})
-        console.log(res.data);
         if(res.data.msg === 'success'){
             return {authUser: res.data.data.authUser, guilds: res.data.data.guilds}
         }
@@ -39,24 +39,27 @@ export const authReducer = createSlice({
             state.guilds = action.payload.guilds
             state.loggedIn = true
         },
-        attemptLogin: (state) => {
-            state.loginMessage = 'pending login'
+        changeLoginMessage: (state, action) => {
+            state.loginMessage = action.payload
         },
         resetState: (state) => {
             state.authUser = null
             state.guilds = []
             state.loginMessage = null
             state.loggedIn = false
+        },
+        selectGuild: (state, action) => {
+            state.selectedGuild = action.payload
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(login.fulfilled, (state, action) => {
                 console.log('success login');
-                state.loginMessage = 'login success'
                 state.authUser = action.payload.authUser
                 state.guilds = action.payload.guilds
                 state.loggedIn = true
+                changeLoginMessage('login success')
             })
             .addCase(login.rejected, (state, action) => {
                 state.loginMessage = action.payload
@@ -66,5 +69,5 @@ export const authReducer = createSlice({
     }
 })
 
-export const {changeUserStatus, attemptLogin, resetState} = authReducer.actions
+export const {changeUserStatus, changeLoginMessage, resetState, selectGuild} = authReducer.actions
 export default authReducer.reducer

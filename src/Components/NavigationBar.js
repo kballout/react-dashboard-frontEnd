@@ -5,34 +5,20 @@ import './styles/componentStyles.css'
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axiosInstance from '../ApiCalls';
-import { useEffect } from 'react';
 import { resetState } from '../redux/authReducer';
 
 const NavigationBar = () => {
     const {loggedIn, authUser} = useSelector((state) => state.auth)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     
     const attemptLogout = async() => {
         const res = await axiosInstance.post('/auth/logout')
         if(res.data.msg === true){
             dispatch(resetState())
-            window.location.reload()
-            navigate('/',{replace: true})
         }
     }
-
-    // useEffect(() => {
-    //     if(loginMessage === 'logout success'){
-    //         console.log('logout attempt redirect');
-    //         if(window.location.href === 'http://localhost:3000/' || window.location.href === 'http://localhost:3000'){
-    //             window.location.reload()
-    //         }
-    //         navigate('/')
-    //     }
-    // },[loginMessage])
 
     const attemptLogin = async() => {
         console.log('try login');
