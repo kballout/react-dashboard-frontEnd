@@ -1,25 +1,20 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux'
-import { useLocation} from 'react-router-dom'
-import NavigationBar from '../../Components/NavigationBar'
-import SideBar from '../../Components/SideBar'
+import { useLocation, useParams} from 'react-router-dom'
 import '../../styles/main.css'
 
-function MainDashboard() {
-  const location = useLocation()
-  const {guilds, selectedGuild} = useSelector((state) => state.auth)
-  const [guild, setGuild] = useState(selectedGuild)
+function MainDashboard({id}) {
+  
+  const {selectedGuild} = useSelector((state) => state.auth)
 
+  
 
+  
   return (
     <div>
-        <NavigationBar/>
         <div className='mainDash'>
-          <div>
-            <SideBar/>
-          </div>
           <section>
-            {location.pathname === '/dashboard' ? (
+            {!selectedGuild ? (
               <div>
                 <h1>
                   Server Settings

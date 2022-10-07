@@ -1,12 +1,10 @@
 import React from 'react'
-import NavigationBar from '../../Components/NavigationBar'
 import '../../styles/main.css'
 import {GiBattleGear} from 'react-icons/gi' 
 
 function Home() {
   return (
     <div>
-        <NavigationBar/>
         <section className='firstSection'>
             <div className='image'></div>
             <div className='firstText'>

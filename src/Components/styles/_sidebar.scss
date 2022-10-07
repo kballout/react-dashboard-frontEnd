@@ -17,10 +17,6 @@
         align-items: center;
         padding: 5px;
     }
-    h2{
-        text-decoration: underline;
-        text-align: center;
-    }
     p{
         font-style: italic;
     }
@@ -109,6 +105,18 @@
     float: left;
     display: block;
     cursor: pointer;
+}
+
+.activeGuild{
+    height: 72px;
+    width: 72px;
+    border-radius: 50%;
+    margin: 8px;
+    float: left;
+    display: block;
+    box-shadow: 
+        0 0 5px 5px rgb(4, 184, 194),
+    ;
 }
 
 ::-webkit-scrollbar {

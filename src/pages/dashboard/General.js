@@ -1,19 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import NavigationBar from '../../Components/NavigationBar'
-import SideBar from '../../Components/SideBar'
+import { useLocation, useParams } from 'react-router-dom'
 
 function General() {
-  const location = useLocation()
-  const {selectedGuild} = useSelector((state) => state.auth)
+  const {id} = useParams()
+  const {guilds, selectedGuild} = useSelector((state) => state.auth)
+  // const [selectedGuild, setSelectedGuild] = useState(guilds.find(g => g.id === id))
 
   return (
     <div>
-        <NavigationBar/>
         <div className='mainDash'>
           <div>
-            <SideBar/>
           </div>
           <section>
               <h1>General Settings</h1>
