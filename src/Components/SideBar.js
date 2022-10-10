@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {FaBars, FaPlusCircle, FaLanguage, FaStore, FaClipboardList} from 'react-icons/fa'
 import {FiSettings} from 'react-icons/fi'
 import {HiUserGroup} from 'react-icons/hi'
@@ -9,14 +9,16 @@ import { Link, useNavigate } from "react-router-dom";
 import './styles/componentStyles.css'
 
 
-function SideBar({id}) {
+function SideBar() {
     const [show, setShow] = useState(false)
     const {guilds, authUser, selectedGuild} = useSelector((state) => state.auth)
     const navigate = useNavigate()
 
     const guildSelect = (guild) => {
-        navigate(`/dashboard/${guild.id}`)
-        setShow(true)
+        if(!selectedGuild || (selectedGuild && selectedGuild.id !== guild.id)){
+            navigate(`/dashboard/${guild.id}`)
+            setShow(true)
+        }
     }
 
 

@@ -1,10 +1,47 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { Button, Spinner } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import axiosInstance from "../../ApiCalls";
+import { updateGuild } from "../../redux/authReducer";
 import "../../styles/main.css";
 
-function MainDashboard({ id }) {
+function MainDashboard() {
   const { selectedGuild } = useSelector((state) => state.auth);
+  const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+
+  const initialize = async() => {
+    try {
+      setLoading(true)
+      let res = await axiosInstance.post(`/dashboard/${selectedGuild.id}/initialize`)
+      if(res.data.msg === 'success'){
+        //update guild info
+        dispatch(updateGuild({id: selectedGuild.id, guildSettings: res.data.guild, type: 'initiate'}))
+      } else{
+        console.log('Error initiating GuildMaster');
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload()
+  }
+  
+  const terminate = async() => {
+    setLoading(true)
+    try {
+      let res = await axiosInstance.post(`/dashboard/${selectedGuild.id}/terminate`)
+      if(res.data.msg === 'success'){
+        //update guild info
+        dispatch(updateGuild({id: selectedGuild.id, type: 'terminate'}))
+      } else{
+        console.log('Error terminating GuildMaster');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload()
+  }
 
   return (
     <div>
@@ -28,13 +65,13 @@ function MainDashboard({ id }) {
                   <div>
                     <h5>Guild is initialized</h5>
                     <p>The terminate button will end the activity and delete all channels, roles, and commands associated with GuildMaster</p>
-                    <Button>Terminate</Button>
+                    {loading ? <Spinner animation="border"/> : <Button onClick={() => terminate()} >Terminate</Button>}
                   </div>
                 ) : (
                   <div>
                     <h5>Guild is not initialized</h5>
                     <p>The Initialize button will begin the activity and create all channels, roles, and commands associated with GuildMaster</p>
-                    <Button>Initialize</Button>
+                    {loading ? <Spinner animation="border"/> : <Button onClick={() => initialize()} >Initialize</Button>}
                   </div>
                 )}
             </div>

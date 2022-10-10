@@ -27,8 +27,8 @@ export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
         message = 'login failed'
         return thunkAPI.rejectWithValue(message)
     }
-
 })
+
 
 export const authReducer = createSlice({
     name: 'auth',
@@ -50,6 +50,22 @@ export const authReducer = createSlice({
         },
         selectGuild: (state, action) => {
             state.selectedGuild = action.payload
+        },
+        updateGuild: (state, action) => {
+            if(action.payload.type === 'terminate'){
+                let index = state.guilds.findIndex(g => g.id === action.payload.id)
+                console.log('index is ' + index);
+                if(index !== -1){
+                    state.guilds[index].guildSettings = {} 
+                    state.guilds[index].exists = false 
+                }
+            } else {
+                let index = state.guilds.findIndex(g => g.id === action.payload.id)
+                if(index !== -1){
+                    state.guilds[index]['guildSettings'] = action.payload.guildSettings
+                    state.guilds[index]['exists'] = true
+                }
+            }
         }
     },
     extraReducers: (builder) => {
@@ -69,5 +85,5 @@ export const authReducer = createSlice({
     }
 })
 
-export const {changeUserStatus, changeLoginMessage, resetState, selectGuild} = authReducer.actions
+export const {changeUserStatus, changeLoginMessage, resetState, selectGuild, updateGuild} = authReducer.actions
 export default authReducer.reducer

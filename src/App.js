@@ -86,29 +86,27 @@ export const GuestNavigation = () => {
 
 export const AuthNavigation = () => {
   const location = useLocation()
-  const [guildId, setGuildId] = useState()
   const dispatch = useDispatch()
   const {guilds} = useSelector((state) => state.auth)
 
   useEffect(() => {
     let id = location.pathname.split('/')[2]
     dispatch(selectGuild(guilds.find(g => g.id === id)))
-    setGuildId(id)
     
   },[location])
 
   return(
     <>
-      {location.pathname.includes('/dashboard') ? <SideBar id={guildId}/> : <></>}
+      {location.pathname.includes('/dashboard') ? <SideBar/> : <></>}
       <Routes>
-        <Route path='/dashboard' element={<MainDashboard id={guildId}/>}> </Route>
-        <Route path='/dashboard/:id' element={<MainDashboard id={guildId}/>}> </Route>
-        <Route path='/dashboard/:id/general' element={<General/>}> </Route>
-        <Route path='/dashboard/:id/moderation' element={<Moderation/>}> </Route>
-        <Route path='/dashboard/:id/management' element={<TeamManagement/>}> </Route>
-        <Route path='/dashboard/:id/stores' element={<Stores/>}> </Route>
-        <Route path='/dashboard/:id/programs' element={<Programs/>}> </Route>
-        <Route path='/dashboard/:id/emblems' element={<Emblems/>}> </Route>
+        <Route exact path='/dashboard' element={<MainDashboard/>}> </Route>
+        <Route exact path='/dashboard/:id' element={<MainDashboard/>}> </Route>
+        <Route exact path='/dashboard/:id/general' element={<General/>}> </Route>
+        <Route exact path='/dashboard/:id/moderation' element={<Moderation/>}> </Route>
+        <Route exact path='/dashboard/:id/management' element={<TeamManagement/>}> </Route>
+        <Route exact path='/dashboard/:id/stores' element={<Stores/>}> </Route>
+        <Route exact path='/dashboard/:id/programs' element={<Programs/>}> </Route>
+        <Route exact path='/dashboard/:id/emblems' element={<Emblems/>}> </Route>
 
         <Route path='/auth/:authcode' element={<Navigate to={'/'} replace={true}/>}> </Route>
         <Route exact path='/' element={<Home/>}> </Route>
