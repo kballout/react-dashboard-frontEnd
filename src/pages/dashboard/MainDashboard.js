@@ -45,8 +45,7 @@ function MainDashboard() {
 
   return (
     <div>
-      <div className="mainDash">
-        <section>
+        <section className="mainDash">
           {!selectedGuild ? (
             <div>
               <h1>Server Settings</h1>
@@ -60,6 +59,20 @@ function MainDashboard() {
             <div>
               <h1>Server Settings</h1>
               <h2>{selectedGuild.name}</h2>
+              <div className="initialized" style={{display: 'flex', justifyContent: 'space-around'}}>
+                <div className="property">
+                  <h5>Members</h5>
+                  <h1>{selectedGuild.channels.length}</h1>
+                </div>
+                <div className="property">
+                  <h5>Channels</h5>
+                  <h1>{selectedGuild.memberCount}</h1>
+                </div>
+                <div className="property">
+                  <h5>Roles</h5>
+                  <h1>{selectedGuild.roles.length}</h1>
+                </div>
+              </div>
               <div className="initialized">
                 {selectedGuild.exists === true ? (
                   <div>
@@ -79,7 +92,6 @@ function MainDashboard() {
           )}
         </section>
       </div>
-    </div>
   );
 }
 
